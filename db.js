@@ -3,10 +3,9 @@ const mongoose = require("mongoose");
 //define the databade url//
 // const mongoURL = 'mongodb://localhost:27017/hotels';
 require('dotenv').config();
-const DB_URL=process.env.DB_URL;
-const mongoURL = DB_URL
+const mongoURL = process.env.DB_URL;
 // setup the db connection//
-mongoose.connect(mongoURL, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoURL);
 //define default connection//
 const db = mongoose.connection;
 // define event listeners//
