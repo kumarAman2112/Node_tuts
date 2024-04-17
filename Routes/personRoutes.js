@@ -30,7 +30,7 @@ router.get('/', async (req,res)=>{
   router.get('/:workType',async(req,res)=>{
     try{
       const workType=req.params.workType;//extract the workType from the url parameter
-      if(workType==='chef'||workType==='waiter'||workType==='manager'){
+      if(workType==='chef'||workType==='waiter'||workType==='manager'||workType==='SoftwareEngineer'){
         const response=await Person.find({work:workType});
         res.status(200).json(response);
       }
@@ -41,5 +41,17 @@ router.get('/', async (req,res)=>{
         res.status(500).json({error:"internal server error"});
     }
   });
+  router.put('/:id',async(req,res)=>{
+           try{
+               const PersonId=req.params.id;
+               const PersonData=req.body;
+               const response=await Person.findByIdAndUpdate(PersonId,PersonData);
+               res.status(200).json(response);
+           }catch(err)
+           {
+            res.status(500).json({err:"internal server error"})
+           }
+  }
+);
   
   module.exports=router;
